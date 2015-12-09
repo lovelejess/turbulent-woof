@@ -1,5 +1,5 @@
 require 'test/unit'
-require_relative '../coin'
+require_relative '../src/coin'
 
 class CoinTest < Test::Unit::TestCase
 

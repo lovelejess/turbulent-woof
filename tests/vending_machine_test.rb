@@ -1,6 +1,6 @@
 require 'test/unit'
 
-require_relative '../vending_machine'
+require_relative '../src/vending_machine'
 
 class VendingMachineTest < Test::Unit::TestCase
 

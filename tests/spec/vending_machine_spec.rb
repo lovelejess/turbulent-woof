@@ -1,5 +1,5 @@
 require 'rspec'
-require_relative '../../vending_machine'
+require_relative '../../src/vending_machine'
 
 describe 'Vending Machine' do
 
