@@ -36,9 +36,35 @@ class VendingMachineTest < Test::Unit::TestCase
     assert_equal('INSERT COINS', vending_machine.display_message_for_inserted_coin(coin_balance))
   end
 
-  def test_coin_return_returns_invalid_coin_penny
+  def test_select_product_cola_returns_product_when_enough_money_is_inserted
     vending_machine = VendingMachine.new
-    assert_equal(['penny'], vending_machine.add_coin_return('penny'))
+    vending_machine.insert_coins(['quarter', 'quarter', 'quarter','quarter'])
+    dispensed_item = vending_machine.select_product('cola')
+    assert_equal('cola', dispensed_item)
   end
 
+  def test_select_product_cola_displays_thank_you_and_insert_coins_when_enough_money_is_inserted
+    vending_machine = VendingMachine.new
+    vending_machine.insert_coins(['quarter', 'quarter', 'quarter','quarter'])
+    vending_machine.select_product('cola')
+    assert_equal('THANK YOU',vending_machine.product_transaction_message)
+    assert_equal('INSERT COINS',vending_machine.display_message)
+  end
+
+  def test_select_product_cola_resets_balance_to_zero_when_enough_money_is_inserted
+    vending_machine = VendingMachine.new
+    vending_machine.insert_coins(['quarter', 'quarter', 'quarter','quarter'])
+    vending_machine.select_product('cola')
+    assert_equal(0,vending_machine.coin_balance)
+  end
+
+  def test_select_product_cola_displays_PRICE_then_balance_when_not_enough_money_is_inserted
+    vending_machine = VendingMachine.new
+    vending_machine.insert_coins(['quarter', 'quarter', 'quarter'])
+    vending_machine.select_product('cola')
+    assert_equal('PRICE: 100 CENTS',vending_machine.product_transaction_message) #TODO: convert 100 cents to 1.00
+    assert_equal('COINS INSERTED: 75 CENTS',vending_machine.display_message) #TODO INSERT COINS
+  end
+
+  # If there is not enough money inserted then the machine displays PRICE and the price of the item and subsequent checks of the display will display either
 end
