@@ -26,7 +26,6 @@ describe 'Vending Machine' do
       coin_balance = vending_machine.insert_coins ['penny']
       display_message = vending_machine.display_message_for_inserted_coin coin_balance
       expect(display_message).to eq 'INSERT COINS'
-      # expect(vending_machine.add_coin_return coin_balance).to eq 'INSERT COINS'
     end
 
     it 'displays INSERT COIN when no coins are inserted' do
@@ -45,4 +44,15 @@ describe 'Vending Machine' do
 
   end
 
+  context 'return coins' do
+    it 'inserted money is return when the return coins is selected and the display shows INSERT COIN.' do
+      vending_machine = VendingMachine.new
+      vending_machine.insert_coins ['penny', 'nickel', 'dime']
+      returned_coins = vending_machine.return_coins
+      expect(vending_machine.display_message).to eq 'INSERT COINS'
+      expect(returned_coins).to eq ['penny', 'dime', 'nickel']
+      expect(vending_machine.coin_balance).to eq 0
+    end
+
+  end
 end

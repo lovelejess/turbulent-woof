@@ -50,6 +50,13 @@ class VendingMachine
     return @coin_balance
   end
 
+  def return_coins
+    make_change(@coin_balance)
+    @coin_balance = 0
+    display_message_for_inserted_coin(0)
+    return @coin_return
+  end
+
   private
 
   def calculate_number_of_coins_for_type(coin_amount, type)

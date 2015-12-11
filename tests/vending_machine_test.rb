@@ -93,4 +93,13 @@ class VendingMachineTest < Test::Unit::TestCase
     assert_equal(['quarter', 'dime','nickel'], vending_machine.coin_return)
   end
 
+  def test_return_coins_returns_inserted_coins
+    vending_machine = VendingMachine.new
+    vending_machine.insert_coins ['penny', 'nickel', 'dime']
+    returned_coins = vending_machine.return_coins
+    assert_equal(['penny', 'dime', 'nickel'],returned_coins)
+    assert_equal('INSERT COINS', vending_machine.display_message)
+    assert_equal(0, vending_machine.coin_balance)
+  end
+
 end
