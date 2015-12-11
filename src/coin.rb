@@ -1,7 +1,7 @@
 class Coin
 
   def self.coin_enum
-    {:nickel => 5, :dime => 10, :quarter => 25}
+    {:quarter => 25, :dime => 10, :nickel => 5 }
   end
 
   def self.is_valid_coin(coin)
