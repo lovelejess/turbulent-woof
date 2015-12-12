@@ -36,7 +36,6 @@ class VendingMachine
       make_change(change)
       return product
     end
-
   end
 
   def insert_coins(coins)
@@ -70,11 +69,12 @@ class VendingMachine
   end
 
   def make_change(coin_amount)
-      Coin.coin_enum.keys.each do |type|
-        if coin_amount > 0
-          coin_amount -= calculate_number_of_coins_for_type(coin_amount, type.to_s)
-        end
+    Coin.coin_enum.keys.each do |type|
+      if coin_amount > 0
+        coin_amount -= calculate_number_of_coins_for_type(coin_amount, type.to_s)
       end
+    end
+    reset_transaction
   end
 
   def add_coin_return(coin)

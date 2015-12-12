@@ -70,27 +70,27 @@ class VendingMachineTest < Test::Unit::TestCase
     vending_machine = VendingMachine.new
     vending_machine.insert_coins ['quarter', 'quarter','quarter', 'nickel', 'dime']
     dispensed_product = vending_machine.select_product('candy')
-    assert_equal(90,vending_machine.coin_balance)
     assert_equal('candy', dispensed_product)
     assert_equal(['quarter'], vending_machine.coin_return)
+    assert_equal(0,vending_machine.coin_balance)
   end
 
   def test_a_dime_is_returned_when_10_cents_inserted_more_than_cost_of_product
     vending_machine = VendingMachine.new
     vending_machine.insert_coins ['quarter', 'quarter','quarter', 'nickel', 'dime','dime']
     dispensed_product = vending_machine.select_product('candy')
-    assert_equal(100,vending_machine.coin_balance)
     assert_equal('candy', dispensed_product)
     assert_equal(['quarter', 'dime'], vending_machine.coin_return)
+    assert_equal(0,vending_machine.coin_balance)
   end
 
   def test_a_dime_quarter_nickel_are_returned_when_35_cents_inserted_more_than_cost_of_product
     vending_machine = VendingMachine.new
     vending_machine.insert_coins ['quarter', 'quarter','quarter', 'nickel', 'dime','dime','nickel']
     dispensed_product = vending_machine.select_product('candy')
-    assert_equal(105,vending_machine.coin_balance)
     assert_equal('candy', dispensed_product)
     assert_equal(['quarter', 'dime','nickel'], vending_machine.coin_return)
+    assert_equal(0,vending_machine.coin_balance)
   end
 
   def test_return_coins_returns_inserted_coins
